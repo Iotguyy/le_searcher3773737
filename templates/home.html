@@ -113,7 +113,7 @@
     </nav>
 
     <div class="bg-white shadow-md p-8 rounded-md">
-        <form method="get" action="{% url 'home' %}" class="mb-8 flex items-center">
+<!--         <form method="get" action="{% url 'home' %}" class="mb-8 flex items-center">
             <input type="text" name="query" class="flex-1 mr-4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search..." value="{{ request.GET.query }}">
             <select name="search_type" class="mr-4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="exact">Exact Match</option>
@@ -121,7 +121,18 @@
                 <option value="phonetic">Phonetic Search</option>
             </select>
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
-        </form>
+        </form> -->
+
+<form method="get" action="{% url 'home' %}" class="mb-8 flex items-center">
+    <input type="text" name="query" class="flex-1 mr-4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search..." value="{{ request.GET.query }}">
+    <select name="search_type" class="mr-4 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="exact" {% if request.GET.search_type == 'exact' %}selected{% endif %}>Exact Match</option>
+        <option value="fuzzy" {% if request.GET.search_type == 'fuzzy' %}selected{% endif %}>Fuzzy Search</option>
+        <option value="phonetic" {% if request.GET.search_type == 'phonetic' %}selected{% endif %}>Phonetic Search</option>
+    </select>
+    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+</form>
+        
 
         {% if results %}
             <h2 class="text-2xl font-bold mb-4">Search Results</h2>
